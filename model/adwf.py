@@ -18,7 +18,8 @@ class ADWF(Module):
         output = embed(input=cat(tensors=scores, dim=1))
         weight = F.softmax(input=self._wgb(input=output), dim=1)
         # output = weight.sum(dim=1, keepdim=True) / (weight / output).sum(dim=1, keepdim=True)
-        output = ((output ** (1 - weight)).prod(dim=1, keepdim=True)) ** (1 / (1 - weight).sum(dim=1, keepdim=True))
+        # output = ((output ** (1 - weight)).prod(dim=1, keepdim=True)) ** (1 / (1 - weight).sum(dim=1, keepdim=True))
+        output = (output ** (1. - weight)).prod(dim=1, keepdim=True)
         # output = (output * weight).prod(dim=1, keepdim=True)
         output = unembed(input=output, size=scores[0].shape[2:])
         return output
