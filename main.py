@@ -14,7 +14,7 @@ if __name__ == '__main__':
 
     argumentParser.add_argument('--device', type=int, default=0)
 
-    argumentParser.add_argument('--seed', type=int, default=42)
+    argumentParser.add_argument('--seed', type=int, default=None)
 
     argumentParser.add_argument('--dataset', type=str, choices=('mvtec', 'visa', 'bhaad'), default='mvtec')
     argumentParser.add_argument('--mean', nargs='+', type=float, default=(0.485, 0.456, 0.406))
